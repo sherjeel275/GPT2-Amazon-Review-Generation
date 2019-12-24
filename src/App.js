@@ -7,6 +7,9 @@ import {
 import './App.css'
 import Home from './Home';
 import About from './About';
+import Play from './Play';
+import Analytics from './Analytics';
+import Scoreboard from './Scoreboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -28,6 +31,24 @@ class App extends React.Component {
               path="/About"
               render={() => (
                  <About />
+              )}
+            />
+            <Route
+              path="/Play"
+              render={() => (
+                 <Play />
+              )}
+            />
+            <Route
+              path="/Analytics"
+              render={() => (
+                 <Analytics />
+              )}
+            />
+            <Route
+              path="/Scoreboard"
+              render={() => (
+                 <Scoreboard />
               )}
             />
           </Switch>

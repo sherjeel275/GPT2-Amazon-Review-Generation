@@ -2,7 +2,7 @@ import React from 'react';
 import Home from "./Home";
 import ReactDOM from 'react-dom';
 
-class About extends React.Component {
+class Analytics extends React.Component {
 	render() {
     	return (
 	      <React.Fragment>
@@ -32,7 +32,7 @@ class About extends React.Component {
 	          </div>
 	        </nav>
 	        <div class="jumbotron text-center">
-	          <h1><b> <font face = "Verdana" size = "24" color ="#255a7b">About the game!</font></b></h1>
+	          <h1><b> <font face = "Verdana" size = "24" color ="#255a7b">See what we learned from this project.</font></b></h1>
 	        </div>
 	      </React.Fragment>
     	);
@@ -41,4 +41,4 @@ class About extends React.Component {
 
 }
 
-export default About
+export default Analytics
