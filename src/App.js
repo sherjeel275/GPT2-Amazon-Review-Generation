@@ -6,6 +6,9 @@ import {
 } from 'react-router-dom';
 import './App.css'
 import Home from './Home';
+import About from './About';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 class App extends React.Component {
@@ -15,16 +18,19 @@ class App extends React.Component {
         <Router>
           <Switch>
             <Route
-                exact
-                path="/"
-                render={() => (
-                  //this.state.isLoggedIn === true
-                    //? <Home />
-                    //: <Redirect to="/login" />
-                    <Home />
-                )}
-              />
-              </Switch>
+              exact
+              path="/"
+              render={() => (
+                  <Home />
+              )}
+            />
+            <Route
+              path="/About"
+              render={() => (
+                 <About />
+              )}
+            />
+          </Switch>
         </Router>
       </div>
 

@@ -12,6 +12,10 @@ class Home extends React.Component {
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="About">About</a>
+            </li>
               
             </ul>
           </div>
