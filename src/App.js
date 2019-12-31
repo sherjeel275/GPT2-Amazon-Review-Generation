@@ -9,7 +9,7 @@ import Home from './Home';
 import About from './About';
 import Play from './Play';
 import Analytics from './Analytics';
-import Scoreboard from './Scoreboard';
+import Team from './Team';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -46,11 +46,12 @@ class App extends React.Component {
               )}
             />
             <Route
-              path="/Scoreboard"
+              path="/Team"
               render={() => (
-                 <Scoreboard />
+                 <Team />
               )}
             />
+            
           </Switch>
         </Router>
       </div>

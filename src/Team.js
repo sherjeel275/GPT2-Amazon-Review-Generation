@@ -2,7 +2,7 @@ import React from 'react';
 import Home from "./Home";
 import ReactDOM from 'react-dom';
 
-class Scoreboard extends React.Component {
+class Team extends React.Component {
 	render() {
     	return (
 	      <React.Fragment>
@@ -25,14 +25,18 @@ class Scoreboard extends React.Component {
             	</li>
 
             	<li class="nav-item">
-                	<a class="nav-link" href="Scoreboard">Scoreboard</a>
+                	<a class="nav-link" href="Leaderboard">Leaderboard</a>
             	</li>
-	              
+	             
+	             <li class="nav-item">
+                	<a class="nav-link" href="Team">Team</a>
+            	</li>
+
 	            </ul>
 	          </div>
 	        </nav>
 	        <div class="jumbotron text-center">
-	          <h1><b> <font face = "Verdana" size = "24" color ="#255a7b">How did other people do? Can you beat them?</font></b></h1>
+	          <h1><b> <font face = "Verdana" size = "24" color ="#255a7b">Meet the team</font></b></h1>
 	        </div>
 	      </React.Fragment>
     	);
@@ -41,4 +45,4 @@ class Scoreboard extends React.Component {
 
 }
 
-export default Scoreboard
+export default Team

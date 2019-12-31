@@ -24,8 +24,9 @@ class About extends React.Component {
                 	<a class="nav-link" href="Analytics">Analytics</a>
             	</li>
 
+           
             	<li class="nav-item">
-                	<a class="nav-link" href="Scoreboard">Scoreboard</a>
+                	<a class="nav-link" href="Team">Team</a>
             	</li>
 	              
 	            </ul>

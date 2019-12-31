@@ -24,7 +24,7 @@ class Home extends React.Component {
               </li>
 
               <li class="nav-item">
-                  <a class="nav-link" href="Scoreboard">Scoreboard</a>
+                  <a class="nav-link" href="Team">Team</a>
               </li>
               
             </ul>
