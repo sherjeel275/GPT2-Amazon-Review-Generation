@@ -8,28 +8,43 @@ class Play extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
+      finalPopUp: false,
+      roundPopUp: false,
       count: 1
     };
   }
 
-  openModal() {
+  openFinalPopUp() {
     this.setState({
-      visible: true
+      finalPopUp: true
     });
   }
 
-  closeModal() {
+  closeFinalPopUp() {
     this.setState({
-      visible: false
+      finalPopUp: false
+    });
+  }
+
+  openRoundPopUp() {
+    this.setState({
+      roundPopUp: true
+    });
+  }
+
+  closeRoundPopUp() {
+    this.setState({
+      roundPopUp: false
     });
   }
 
   incrementRound = () => {
     if (this.state.count == 15) {
-      this.openModal();
+      // bring up popup window and end game
+      this.openFinalPopUp();
     } else {
       this.setState({ count: this.state.count + 1 });
+      this.openRoundPopUp();
     }
   };
 
@@ -92,27 +107,71 @@ class Play extends React.Component {
               <article>
                 <p>Review text to be inserted here...</p>
               </article>
+              <button
+                onClick={this.incrementRound}
+                className="btn btn-success m-2"
+              >
+                Real
+              </button>
+              <button
+                onClick={this.incrementRound}
+                className="btn btn-danger m-2"
+              >
+                Fake
+              </button>
             </div>
           </section>
         </div>
-        <button
-          onClick={this.incrementRound}
-          className="btn btn-secondary btn-sm"
-        >
-          Real
-        </button>
-        <button
-          onClick={this.incrementRound}
-          className="btn btn-secondary btn-sm"
-        >
-          Fake
-        </button>
         <Modal
-          visible={this.state.visible}
+          visible={this.state.roundPopUp}
+          width="500"
+          height="400"
+          effect="fadeInUp"
+          onClickAway={() => this.closeRoundPopUp()}
+        >
+          <div>
+            <h1>end of round...</h1>
+            <br></br>
+            <label for="exampleFormControlSelect1">
+              How confident are you in this answer? (1: hardly, 10: very)
+            </label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+            </select>
+            <br></br>
+            <div class="form-group">
+              <label for="responseTextarea">
+                Why did you choose this answer? (in a few words)
+              </label>
+              <textarea
+                class="form-control"
+                id="responseTextarea"
+                rows="3"
+              ></textarea>
+            </div>
+            <a
+              href="javascript:void(0);"
+              onClick={() => this.closeRoundPopUp()}
+            >
+              Next
+            </a>
+          </div>
+        </Modal>
+        <Modal
+          visible={this.state.finalPopUp}
           width="400"
           height="300"
           effect="fadeInUp"
-          onClickAway={() => this.closeModal()}
+          onClickAway={() => this.closeFinalPopUp()}
         >
           <div>
             <h1>Thanks for playing!</h1>

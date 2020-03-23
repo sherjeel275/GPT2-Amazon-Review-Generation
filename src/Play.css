@@ -15,12 +15,6 @@ body {
   text-shadow: 0 2px 2px #b6701e;
 }
 
-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 h1 {
   font-size: 1.75rem;
   margin: 0 0 0.75rem 0;
@@ -36,4 +30,5 @@ h1 {
   flex: 1;
   padding: 1rem;
   margin: 100px;
+  height: 60%;
 }
