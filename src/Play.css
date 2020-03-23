@@ -1,5 +1,7 @@
 /* Pen-specific styles */
-html, body, section {
+html,
+body,
+section {
   height: 100%;
   width: 100%;
 }
@@ -29,14 +31,21 @@ h1 {
   display: flex;
 }
 
-.left-half {
+.review-box {
   background-color: #ff9e2c;
   flex: 1;
   padding: 1rem;
+  margin: 100px;
 }
 
-.right-half {
-  background-color: #b6701e;
-  flex: 1;
-  padding: 1rem;
+.buttons {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.action_btn {
+  display: inline-block;
+  width: calc(50% - 4px);
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
