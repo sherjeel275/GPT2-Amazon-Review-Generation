@@ -107,8 +107,6 @@ class Play extends React.Component {
         >
           Fake
         </button>
-
-        <input type="button" value="Open" onClick={() => this.openModal()} />
         <Modal
           visible={this.state.visible}
           width="400"
