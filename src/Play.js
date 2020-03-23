@@ -1,17 +1,33 @@
 import React from "react";
+import Modal from "react-awesome-modal";
 import Home from "./Home";
 import ReactDOM from "react-dom";
 import "./Play.css";
 
 class Play extends React.Component {
-  state = {
-    count: 1
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      visible: false,
+      count: 1
+    };
+  }
+
+  openModal() {
+    this.setState({
+      visible: true
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      visible: false
+    });
+  }
 
   incrementRound = () => {
     if (this.state.count == 15) {
-      // END GAME
-      this.setState({ count: 1 });
+      this.openModal();
     } else {
       this.setState({ count: this.state.count + 1 });
     }
@@ -91,6 +107,22 @@ class Play extends React.Component {
         >
           Fake
         </button>
+
+        <input type="button" value="Open" onClick={() => this.openModal()} />
+        <Modal
+          visible={this.state.visible}
+          width="400"
+          height="300"
+          effect="fadeInUp"
+          onClickAway={() => this.closeModal()}
+        >
+          <div>
+            <h1>Thanks for playing!</h1>
+            <a class="navbar-brand" href="/">
+              Home
+            </a>
+          </div>
+        </Modal>
       </React.Fragment>
     );
   }
