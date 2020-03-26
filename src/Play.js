@@ -7,10 +7,13 @@ import "./Play.css";
 class Play extends React.Component {
   constructor(props) {
     super(props);
+
+    // NOTE: 'guess' represents user's guess, with true corresponding to 'real' and false to 'fake'
     this.state = {
       finalPopUp: false,
       roundPopUp: false,
-      count: 1
+      count: 1,
+      guess: true
     };
   }
 
@@ -33,14 +36,18 @@ class Play extends React.Component {
   };
 
   closeRoundPopUp = () => {
-    // fetch user input
+    /*
+     * TODO: fetch reviews dynamically, add JSON to review table on backend
+     */
 
-    const curr_review = "";
-    const curr_guess = true;
-    const confidence_ranking = document.getElementById(
-      "confidenceRankingSelection"
-    ).value;
-    const user_feedback = document.getElementById("responseTextarea").value;
+    // fetch user input
+    const currentReviewJSON = {
+      review: "INSERT REVIEW HERE",
+      guess: this.state.guess,
+      confidence_ranking: document.getElementById("confidenceRankingSelection")
+        .value,
+      feedback: document.getElementById("responseTextarea").value
+    };
 
     this.setState({
       roundPopUp: false
@@ -120,13 +127,20 @@ class Play extends React.Component {
                 <p>Review text to be inserted here...</p>
               </article>
               <button
-                onClick={this.openRoundPopUp}
+                onClick={() => {
+                  this.setState({ guess: true });
+                  this.openRoundPopUp();
+                }}
+                // onClick={this.openRoundPopUp}
                 className="btn btn-success m-2"
               >
                 Real
               </button>
               <button
-                onClick={this.openRoundPopUp}
+                onClick={() => {
+                  this.setState({ guess: false });
+                  this.openRoundPopUp();
+                }}
                 className="btn btn-danger m-2"
               >
                 Fake
