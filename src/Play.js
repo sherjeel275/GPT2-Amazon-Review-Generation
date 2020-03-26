@@ -33,9 +33,20 @@ class Play extends React.Component {
   };
 
   closeRoundPopUp = () => {
+    // fetch user input
+
+    const curr_review = "";
+    const curr_guess = true;
+    const confidence_ranking = document.getElementById(
+      "confidenceRankingSelection"
+    ).value;
+    const user_feedback = document.getElementById("responseTextarea").value;
+
     this.setState({
       roundPopUp: false
     });
+
+    // update round
     this.incrementRound();
   };
 
@@ -44,8 +55,7 @@ class Play extends React.Component {
       // bring up popup window and end game
       this.openFinalPopUp();
     } else {
-      console.log("hello");
-      //console.log(document.getElementById("responseTextarea").innerText.trim);
+      // update current round
       this.setState({ count: this.state.count + 1 });
     }
   };
