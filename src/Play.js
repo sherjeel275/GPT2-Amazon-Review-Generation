@@ -14,37 +14,39 @@ class Play extends React.Component {
     };
   }
 
-  openFinalPopUp() {
+  openFinalPopUp = () => {
     this.setState({
       finalPopUp: true
     });
-  }
+  };
 
-  closeFinalPopUp() {
+  closeFinalPopUp = () => {
     this.setState({
       finalPopUp: false
     });
-  }
+  };
 
-  openRoundPopUp() {
+  openRoundPopUp = () => {
     this.setState({
       roundPopUp: true
     });
-  }
+  };
 
-  closeRoundPopUp() {
+  closeRoundPopUp = () => {
     this.setState({
       roundPopUp: false
     });
-  }
+    this.incrementRound();
+  };
 
   incrementRound = () => {
     if (this.state.count == 15) {
       // bring up popup window and end game
       this.openFinalPopUp();
     } else {
+      console.log("hello");
+      //console.log(document.getElementById("responseTextarea").innerText.trim);
       this.setState({ count: this.state.count + 1 });
-      this.openRoundPopUp();
     }
   };
 
@@ -108,13 +110,13 @@ class Play extends React.Component {
                 <p>Review text to be inserted here...</p>
               </article>
               <button
-                onClick={this.incrementRound}
+                onClick={this.openRoundPopUp}
                 className="btn btn-success m-2"
               >
                 Real
               </button>
               <button
-                onClick={this.incrementRound}
+                onClick={this.openRoundPopUp}
                 className="btn btn-danger m-2"
               >
                 Fake
@@ -123,6 +125,7 @@ class Play extends React.Component {
           </section>
         </div>
         <Modal
+          id="endOfRoundModal"
           visible={this.state.roundPopUp}
           width="500"
           height="400"
