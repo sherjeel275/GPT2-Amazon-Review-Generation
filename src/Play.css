@@ -6,6 +6,10 @@ section {
   width: 100%;
 }
 
+nav {
+  border-bottom: 2px solid;
+}
+
 body {
   color: #fff;
   font-family: sans-serif;
@@ -26,7 +30,8 @@ h1 {
 }
 
 .review-box {
-  background-color: #ff9e2c;
+  border-style: solid;
+  background-color: #b1dff5;
   flex: 1;
   padding: 1rem;
   margin: 100px;
