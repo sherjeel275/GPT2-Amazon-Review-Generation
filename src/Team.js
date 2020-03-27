@@ -1,6 +1,8 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import Home from "./Home";
 import ReactDOM from "react-dom";
 
@@ -59,53 +61,76 @@ class Team extends React.Component {
           </h1>
           <br></br>
           <br></br>
-          <CardDeck>
-            <Card border="primary" style={{ width: "18rem" }}>
-              <Card.Header>Sherjeel Arif</Card.Header>
-              <Card.Img variant="top" src="" />
-              <Card.Body>
-                <Card.Text>
-                  Hi, my name is Sherjeel and I'm a senior at Penn studying
-                  Electrical Engineering with a concentration in Data Science.
-                  I'm interested in machine learning and deep learning. I hope
-                  to apply these disciples to better understand our world!
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            <Card border="primary" style={{ width: "18rem" }}>
-              <Card.Header>Srinath Makesh</Card.Header>
-              <Card.Img variant="top" src="" />
-              <Card.Body>
-                <Card.Text>...</Card.Text>
-              </Card.Body>
-            </Card>
-            <Card border="primary" style={{ width: "18rem" }}>
-              <Card.Header>Aavo Reinvald</Card.Header>
-              <Card.Img variant="top" src="" />
-              <Card.Body>
-                <Card.Text>
-                  Hello! My name is Aavo and I am a senior studing CS at Penn.
-                  My interests currently lie in algorithm design, game theory,
-                  software optimization, and humanitarian software development.
-                  I'll be a software developer in Chicago after I complete my
-                  degree.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-            <Card border="primary" style={{ width: "18rem" }}>
-              <Card.Header>Andrew Si</Card.Header>
-              <Card.Img variant="top" src="" />
-              <Card.Body>
-                <Card.Text>
-                  My name is Andrew and I'm a senior at Penn majoring in
-                  computer science. Some of my interests in CS include natural
-                  language processing, computer vision, and computer graphics.
-                  I'll be working in software engineering in the San Francisco
-                  Bay Area after graduating.
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </CardDeck>
+          <Container fluid>
+            <Row className="justify-content-md-center">
+              <CardDeck>
+                <Card border="success" style={{ width: "20rem" }}>
+                  <Card.Header>Sherjeel Arif</Card.Header>
+                  <Card.Img variant="top" src="" />
+                  <Card.Body>
+                    <Card.Text>
+                      Hi, my name is Sherjeel and I'm a senior at Penn studying
+                      Electrical Engineering with a concentration in Data
+                      Science. I'm interested in machine learning and deep
+                      learning. I hope to apply these disciples to better
+                      understand our world!
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+                <Card border="danger" style={{ width: "20rem" }}>
+                  <Card.Header>Srinath Makesh</Card.Header>
+                  <Card.Img variant="top" src="" />
+                  <Card.Body>
+                    <Card.Text>...</Card.Text>
+                  </Card.Body>
+                </Card>
+                <Card border="primary" style={{ width: "20rem" }}>
+                  <Card.Header>Aavo Reinvald</Card.Header>
+                  <Card.Img variant="top" src="" />
+                  <Card.Body>
+                    <Card.Text>
+                      Hello! My name is Aavo and I am a senior studing CS at
+                      Penn. My interests currently lie in algorithm design, game
+                      theory, software optimization, and humanitarian software
+                      development. I'll be a software developer in Chicago after
+                      I complete my degree.
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+                <Card border="warning" style={{ width: "20rem" }}>
+                  <Card.Header>Andrew Si</Card.Header>
+                  <Card.Img variant="top" src="" />
+                  <Card.Body>
+                    <Card.Text>
+                      My name is Andrew and I'm a senior at Penn majoring in
+                      computer science. Some of my interests in CS include
+                      natural language processing, computer vision, and computer
+                      graphics. I'll be working in software engineering in the
+                      San Francisco Bay Area after graduating.
+                    </Card.Text>
+                  </Card.Body>
+                </Card>
+              </CardDeck>
+            </Row>
+            <br></br>
+            <br></br>
+            <br></br>
+            <Row className="justify-content-md-center">
+              <Card border="info" style={{ width: "36rem" }}>
+                <Card.Header>A Special Thanks to Our Mentors</Card.Header>
+                <Card.Img variant="top" src="" />
+                <Card.Body>
+                  <Card.Text>
+                    As a team trying to explore and answer questions in a
+                    practically uncharted territory, this project would not have
+                    been possible without the guidance and assistance from
+                    Professor Ani Nenkova as well as our advisors, Professor
+                    Chris Callison-Burch and Daphne Ippolito.
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Row>
+          </Container>
         </div>
       </React.Fragment>
     );
