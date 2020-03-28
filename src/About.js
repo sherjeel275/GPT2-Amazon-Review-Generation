@@ -28,25 +28,36 @@ class About extends React.Component {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="About">
-                  About
-                </a>
-              </li>
+                        <a class="nav-link" href="Login">
+                            Login
+                        </a>
+                      </li>
+                      <li>
+                        <a class="nav-link" href="signup">Signup</a>
+                      </li>
+                      <li>
+                        <a class="nav-link" href="logout">Logout</a>
+                      </li>
               <li class="nav-item">
-                <a class="nav-link" href="Play">
-                  Play
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Analytics">
-                  Analytics
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Team">
-                  Team
-                </a>
-              </li>
+                        <a class="nav-link" href="About">
+                          About
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="Play">
+                          Play
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="Analytics">
+                          Analytics
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="Team">
+                          Team
+                        </a>
+                      </li>
             </ul>
           </div>
         </nav>
