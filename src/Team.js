@@ -92,7 +92,11 @@ class Team extends React.Component {
                   <Card.Header>Srinath Makesh</Card.Header>
                   <Card.Img variant="top" src="" />
                   <Card.Body>
-                    <Card.Text>...</Card.Text>
+                    <Card.Text>My name is Srinath and I'm a senior at Penn studying 
+                    computer science and statistics. My interests in CS include predictive modeling,
+                     machine learning, and data mining. In my free time, I enjoy playing pickup basketball,
+                      singing, and reading scientific nonfiction. I'll be working in software engineering
+                       in the San Francisco Bay Area this fall!</Card.Text>
                   </Card.Body>
                 </Card>
                 <Card border="primary" style={{ width: "20rem" }}>
