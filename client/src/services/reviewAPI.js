@@ -9,8 +9,9 @@ export default {
     });
     return res.data || [];
   },
-  addFeedback: async (_id, confidence_ranking, feedback, guess) => {
+  addFeedback: async (cohort, _id, confidence_ranking, feedback, guess) => {
     let res = await axios.post(`/addFeedback`, {
+      cohort: cohort,
       _id: _id,
       guess: guess,
       confidence_ranking: confidence_ranking,

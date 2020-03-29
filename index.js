@@ -6,8 +6,12 @@ const bodyParser = require("body-parser");
 const app = express();
 const MongoClient = require("mongodb").MongoClient;
 const uri =
-  "mongodb+srv://reinvald:mepP8NhdN93IY6Vm@cluster0-xf5wa.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+  "mongodb+srv://reinvald:mepP8NhdN93IY6Vm@cluster0-xf5wa.mongodb.net/test?retryWrites=true&w=majority&wtimeoutMS=0&j=true";
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  reconnectTries: Number.MAX_VALUE,
+  autoReconnect: true
+});
 
 app.use(bodyParser.json());
 
@@ -32,11 +36,108 @@ async function main() {
   }
 }
 
+async function checkConnection() {
+  if (!client.isConnected) {
+    await client.connect();
+  }
+}
+
 /*
  * route to fetch all reviews in Atlas belonging to one of the four cohorts
  */
 app.post("/getCohort", function(req, res) {
   console.log("fetching reviews from cohort" + req.body.cohort + "...");
+
+  if (!client.isConnected) {
+    checkConnection();
+
+    client
+      .db("reviews")
+      .collection("cohort" + req.body.cohort)
+      .find({})
+      .toArray((error, result) => {
+        if (error) {
+          console.log(error);
+          return res.status(500).send(error);
+        }
+        console.log("query completed");
+        res.send(result);
+      });
+  } else {
+    client
+      .db("reviews")
+      .collection("cohort" + req.body.cohort)
+      .find({})
+      .toArray((error, result) => {
+        if (error) {
+          console.log(error);
+          return res.status(500).send(error);
+        }
+        console.log("query completed");
+        res.send(result);
+      });
+  }
+});
+
+/*
+ * route to update review based on user response
+ */
+app.post("/addFeedback", function(req, res) {
+  console.log(
+    "updating review " + req.body._id + " in cohort " + req.body.cohort + "..."
+  );
+
+  if (!client.isConnected) {
+    checkConnection();
+
+    client
+      .db("reviews")
+      .collection("cohort" + req.body.cohort)
+      .updateMany(
+        { _id: req.body._id },
+        {
+          $push: {
+            feedback: {
+              guess: req.body.guess,
+              confidence_ranking: req.body.confidence_ranking,
+              feedback: req.body.feedback
+            }
+          }
+        }
+      )
+      .then(result => {
+        const { matchedCount, modifiedCount } = result;
+        if (matchedCount && modifiedCount) {
+          console.log(`Successfully updated the item.`);
+        }
+      })
+      .catch(err => console.error(`Failed to update the item: ${err}`));
+  } else {
+    client
+      .db("reviews")
+      .collection("cohort" + req.body.cohort)
+      .updateMany(
+        { _id: req.body._id },
+        {
+          $push: {
+            feedback: {
+              guess: req.body.guess,
+              confidence_ranking: req.body.confidence_ranking,
+              feedback: req.body.feedback
+            }
+          }
+        }
+      )
+      .then(result => {
+        const { matchedCount, modifiedCount } = result;
+        if (matchedCount && modifiedCount) {
+          console.log(`Successfully updated the item.`);
+        }
+      })
+      .catch(err => console.error(`Failed to update the item: ${err}`));
+  }
+
+  /*
   client
     .db("reviews")
     .collection("cohort" + req.body.cohort)
@@ -49,6 +150,7 @@ app.post("/getCohort", function(req, res) {
       console.log("query completed");
       res.send(result);
     });
+  */
 });
 
 main().catch(console.error);

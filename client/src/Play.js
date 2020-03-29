@@ -59,9 +59,14 @@ class Play extends React.Component {
     return result;
   };
 
-  addFeedback = async () => {
-    //let result = await reviewAPI.addFeedback();
-    //return result;
+  addFeedback = async (cohort, _id, confidence_ranking, feedback, guess) => {
+    await reviewAPI.addFeedback(
+      cohort,
+      _id,
+      confidence_ranking,
+      feedback,
+      guess
+    );
   };
 
   openFinalPopUp = () => {
@@ -88,15 +93,16 @@ class Play extends React.Component {
      */
 
     // fetch user input
-    const currentReviewJSON = {
-      product_id: this.getCurrentID(),
-      guess: this.state.guess,
-      confidence_ranking: document.getElementById("confidenceRankingSelection")
-        .value,
-      feedback: document.getElementById("responseTextarea").value
-    };
 
-    console.log(JSON.stringify(currentReviewJSON));
+    const cohort = 1;
+    const _id = this.getCurrentID();
+    const guess = this.state.guess;
+    const confidence_ranking = document.getElementById(
+      "confidenceRankingSelection"
+    ).value;
+    const feedback = document.getElementById("responseTextarea").value;
+
+    this.addFeedback(cohort, _id, confidence_ranking, feedback, guess);
 
     // add JSON to database thru reviewAPI
 
