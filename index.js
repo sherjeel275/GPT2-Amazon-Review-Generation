@@ -24,13 +24,15 @@ async function main() {
   try {
     // Connect to the MongoDB cluster
     await client.connect();
+    console.log("successful connection to MongoDB Atlas!");
 
     // Make the appropriate DB calls
-    await listDatabases(client);
+    // await listDatabases(client);
+    // await list(client);
   } catch (e) {
     console.error(e);
   } finally {
-    await client.close();
+    //await client.close();
   }
 }
 
@@ -44,11 +46,36 @@ async function listDatabases(client) {
   databasesList.databases.forEach(db => console.log(` - ${db.name}`));
 }
 
-main().catch(console.error);
+async function list(client) {
+  client
+    .db("sample_airbnb")
+    .collection("listingsAndReviews")
+    .find({})
+    .toArray((error, result) => {
+      if (error) {
+        console.log(error);
+      }
+      console.log(result);
+    });
+}
+
+//main().catch(console.error);
 
 app.get("/test", function(req, res) {
-  console.log("TESTING");
-  res.send("HELLO!");
+  client
+    .db("sample_airbnb")
+    .collection("listingsAndReviews")
+    .find({})
+    .toArray((error, result) => {
+      if (error) {
+        console.log(error);
+        return res.status(500).send(error);
+      }
+      res.send(result);
+    });
+
+  //console.log(results);
+  //res.send(results);
 });
 
 const PORT = process.env.PORT || 5000;
