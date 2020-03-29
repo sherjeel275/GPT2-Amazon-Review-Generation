@@ -14,9 +14,38 @@ class Play extends React.Component {
       finalPopUp: false,
       roundPopUp: false,
       count: 1,
-      guess: true
+      guess: true,
+      reviews: []
     };
   }
+
+  componentDidMount() {
+    // fetch the reviews, once it retrieves resolve the promise and update the state
+    this.getCohort().then(result =>
+      this.setState({
+        reviews: result
+      })
+    );
+  }
+
+  getCurrentReview = () => {
+    var currReview = "";
+
+    this.state.reviews.map((rev, i) => {
+      //console.log("REVIEW: " + rev.review + " " + i);
+      if (i == this.state.count - 1) {
+        console.log(rev.review);
+        currReview = rev.review;
+      }
+    });
+
+    return currReview.substring(0, 700);
+  };
+
+  getCohort = async () => {
+    let result = await reviewAPI.getCohort();
+    return result;
+  };
 
   openFinalPopUp = () => {
     this.setState({
@@ -34,11 +63,6 @@ class Play extends React.Component {
     this.setState({
       roundPopUp: true
     });
-  };
-
-  getCohort = async () => {
-    let res = await reviewAPI.getCohort();
-    console.log(res);
   };
 
   closeRoundPopUp = () => {
@@ -144,13 +168,12 @@ class Play extends React.Component {
           <section class="container">
             <div class="review-box">
               <article>
-                <p>Review text to be inserted here...</p>
+                <p>{this.getCurrentReview()}</p>
               </article>
               <button
                 onClick={() => {
                   this.setState({ guess: true });
                   this.openRoundPopUp();
-                  this.getCohort();
                 }}
                 // onClick={this.openRoundPopUp}
                 className="btn btn-success m-2"
