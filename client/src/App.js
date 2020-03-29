@@ -1,4 +1,3 @@
-/*
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
@@ -83,8 +82,8 @@ class App extends React.Component {
 }
 
 export default App;
-*/
 
+/*
 // /client/src/App.js
 
 import React, { useState, useEffect } from "react";
@@ -121,3 +120,4 @@ function App() {
 }
 
 export default App;
+*/

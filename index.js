@@ -59,9 +59,25 @@ async function list(client) {
     });
 }
 
-//main().catch(console.error);
-
-app.get("/test", function(req, res) {
+/*
+ * route to fetch all reviews in Atlas belonging to one of the four cohorts
+ */
+app.post("/getCohort", function(req, res) {
+  console.log("test request received...");
+  client
+    .db("reviews")
+    .collection("cohort1")
+    .find({})
+    .toArray((error, result) => {
+      if (error) {
+        console.log(error);
+        return res.status(500).send(error);
+      }
+      console.log(result);
+      res.send(result);
+    });
+  console.log("query completed");
+  /*
   client
     .db("sample_airbnb")
     .collection("listingsAndReviews")
@@ -73,10 +89,12 @@ app.get("/test", function(req, res) {
       }
       res.send(result);
     });
-
+    */
   //console.log(results);
   //res.send(results);
 });
+
+main().catch(console.error);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
