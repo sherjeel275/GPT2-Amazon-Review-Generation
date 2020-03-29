@@ -8,5 +8,14 @@ export default {
       cohort: "1"
     });
     return res.data || [];
+  },
+  addFeedback: async (_id, confidence_ranking, feedback, guess) => {
+    let res = await axios.post(`/addFeedback`, {
+      _id: _id,
+      guess: guess,
+      confidence_ranking: confidence_ranking,
+      feedback: feedback
+    });
+    return res.data || [];
   }
 };

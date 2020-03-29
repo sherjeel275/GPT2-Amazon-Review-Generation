@@ -34,7 +34,6 @@ class Play extends React.Component {
     this.state.reviews.map((rev, i) => {
       //console.log("REVIEW: " + rev.review + " " + i);
       if (i == this.state.count - 1) {
-        console.log(rev.review);
         currReview = rev.review;
       }
     });
@@ -42,9 +41,27 @@ class Play extends React.Component {
     return currReview.substring(0, 700);
   };
 
+  getCurrentID = () => {
+    var currID = "";
+
+    this.state.reviews.map((rev, i) => {
+      //console.log("REVIEW: " + rev.review + " " + i);
+      if (i == this.state.count - 1) {
+        currID = rev._id;
+      }
+    });
+
+    return currID;
+  };
+
   getCohort = async () => {
     let result = await reviewAPI.getCohort();
     return result;
+  };
+
+  addFeedback = async () => {
+    //let result = await reviewAPI.addFeedback();
+    //return result;
   };
 
   openFinalPopUp = () => {
@@ -72,12 +89,16 @@ class Play extends React.Component {
 
     // fetch user input
     const currentReviewJSON = {
-      review: "INSERT REVIEW HERE",
+      product_id: this.getCurrentID(),
       guess: this.state.guess,
       confidence_ranking: document.getElementById("confidenceRankingSelection")
         .value,
       feedback: document.getElementById("responseTextarea").value
     };
+
+    console.log(JSON.stringify(currentReviewJSON));
+
+    // add JSON to database thru reviewAPI
 
     this.setState({
       roundPopUp: false
