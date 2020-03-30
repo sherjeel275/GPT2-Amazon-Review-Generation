@@ -109,6 +109,7 @@ app.post("/addFeedback", function(req, res) {
         const { matchedCount, modifiedCount } = result;
         if (matchedCount && modifiedCount) {
           console.log(`Successfully updated the item.`);
+          res.send(result);
         }
       })
       .catch(err => console.error(`Failed to update the item: ${err}`));
@@ -132,6 +133,7 @@ app.post("/addFeedback", function(req, res) {
         const { matchedCount, modifiedCount } = result;
         if (matchedCount && modifiedCount) {
           console.log(`Successfully updated the item.`);
+          res.send(result);
         }
       })
       .catch(err => console.error(`Failed to update the item: ${err}`));

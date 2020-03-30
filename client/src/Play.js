@@ -61,6 +61,7 @@ class Play extends React.Component {
 
   addFeedback = async (cohort, _id, confidence_ranking, feedback, guess) => {
     console.log("fetching...");
+    console.log(cohort, _id, confidence_ranking, feedback, guess);
     return fetch("/addFeedback", {
       method: "POST",
       headers: {
@@ -108,12 +109,7 @@ class Play extends React.Component {
   };
 
   closeRoundPopUp = async () => {
-    /*
-     * TODO: fetch reviews dynamically, add JSON to review table on backend
-     */
-
     // fetch user input
-
     const cohort = 1;
     const _id = this.getCurrentID();
     const guess = this.state.guess;
@@ -122,9 +118,9 @@ class Play extends React.Component {
     ).value;
     const feedback = document.getElementById("responseTextarea").value;
 
-    this.addFeedback(cohort, _id, confidence_ranking, feedback, guess);
-
     // add JSON to database thru reviewAPI
+    this.addFeedback(cohort, _id, confidence_ranking, feedback, guess);
+    //this.getCohort();
 
     this.setState({
       roundPopUp: false
