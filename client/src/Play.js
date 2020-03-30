@@ -60,6 +60,25 @@ class Play extends React.Component {
   };
 
   addFeedback = async (cohort, _id, confidence_ranking, feedback, guess) => {
+    console.log("fetching...");
+    return fetch("/addFeedback", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        cohort: cohort,
+        _id: _id,
+        guess: guess,
+        confidence_ranking: confidence_ranking,
+        feedback: feedback
+      })
+    }).catch(error => {
+      console.error(error);
+    });
+
+    /*
     await reviewAPI.addFeedback(
       cohort,
       _id,
@@ -67,6 +86,7 @@ class Play extends React.Component {
       feedback,
       guess
     );
+    */
   };
 
   openFinalPopUp = () => {
@@ -87,7 +107,7 @@ class Play extends React.Component {
     });
   };
 
-  closeRoundPopUp = () => {
+  closeRoundPopUp = async () => {
     /*
      * TODO: fetch reviews dynamically, add JSON to review table on backend
      */
