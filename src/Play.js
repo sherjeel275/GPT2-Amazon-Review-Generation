@@ -21,7 +21,7 @@ class Play extends React.Component {
 
   componentDidMount() {
     // fetch the reviews, once it retrieves resolve the promise and update the state
-    this.getCohort().then(result =>
+    this.getCohort("1").then(result =>
       this.setState({
         reviews: result
       })
@@ -54,9 +54,33 @@ class Play extends React.Component {
     return currID;
   };
 
+  /*
   getCohort = async () => {
     let result = await reviewAPI.getCohort();
     return result;
+  };
+  */
+
+  getCohort = async cohort => {
+    return fetch("/getCohort", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        cohort: cohort
+      })
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        return data;
+      })
+      .catch(error => {
+        console.error(error);
+      });
   };
 
   addFeedback = async (cohort, _id, confidence_ranking, feedback, guess) => {

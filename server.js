@@ -61,7 +61,7 @@ async function checkConnection() {
  * route to fetch all reviews in Atlas belonging to one of the four cohorts
  */
 app.post("/getCohort", function(req, res) {
-  console.log("NEW fetching reviews from cohort" + req.body.cohort + "...");
+  console.log("fetching reviews from cohort" + req.body.cohort + "...");
 
   if (!client.isConnected) {
     checkConnection();
@@ -99,11 +99,7 @@ app.post("/getCohort", function(req, res) {
  */
 app.post("/addFeedback", function(req, res) {
   console.log(
-    "NEW updating review " +
-      req.body._id +
-      " in cohort " +
-      req.body.cohort +
-      "..."
+    "updating review " + req.body._id + " in cohort " + req.body.cohort + "..."
   );
 
   if (!client.isConnected) {
