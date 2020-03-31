@@ -1,6 +1,27 @@
 import React from "react";
 
 class Home extends React.Component {
+  checkSubmission = () => {
+    var cohort = document.getElementById("inputCohort").value;
+
+    switch (cohort) {
+      case "Aavo":
+        // send to cohort one
+        break;
+      case "Andrew":
+        // send to cohort ???
+        break;
+      case "Sherjeel":
+        break;
+      case "Srinath":
+        break;
+      default:
+        alert(
+          "Not a valid code, please check that you entered the code correctly."
+        );
+    }
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -22,36 +43,20 @@ class Home extends React.Component {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                        <a class="nav-link" href="Login">
-                            Login
-                        </a>
-                      </li>
-                      <li>
-                        <a class="nav-link" href="signup">Signup</a>
-                      </li>
-                      <li>
-                        <a class="nav-link" href="logout">Logout</a>
-                      </li>
+                <a class="nav-link" href="About">
+                  About
+                </a>
+              </li>
               <li class="nav-item">
-                        <a class="nav-link" href="About">
-                          About
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="Play">
-                          Play
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="Analytics">
-                          Analytics
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="Team">
-                          Team
-                        </a>
-                      </li>
+                <a class="nav-link" href="Analytics">
+                  Analytics
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Team">
+                  Team
+                </a>
+              </li>
             </ul>
           </div>
         </nav>
@@ -64,6 +69,29 @@ class Home extends React.Component {
               </font>
             </b>
           </h1>
+          <br></br>
+          <br></br>
+          <br></br>
+          <div class="form-group">
+            <div class="pl-5 pr-5">
+              <label for="inputCohort">
+                Please enter the cohort code given to you to enter the site...
+              </label>
+              <input
+                type="password"
+                class="form-control"
+                id="inputCohort"
+                placeholder="Enter cohort code here..."
+              ></input>
+            </div>
+            <button
+              type="submit"
+              class="btn btn-primary mt-2"
+              onClick={() => this.checkSubmission()}
+            >
+              Submit
+            </button>
+          </div>
         </div>
       </React.Fragment>
     );

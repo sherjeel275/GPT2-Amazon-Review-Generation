@@ -28,36 +28,20 @@ class Team extends React.Component {
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                        <a class="nav-link" href="Login">
-                            Login
-                        </a>
-                      </li>
-                      <li>
-                        <a class="nav-link" href="signup">Signup</a>
-                      </li>
-                      <li>
-                        <a class="nav-link" href="logout">Logout</a>
-                      </li>
+                <a class="nav-link" href="About">
+                  About
+                </a>
+              </li>
               <li class="nav-item">
-                        <a class="nav-link" href="About">
-                          About
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="Play">
-                          Play
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="Analytics">
-                          Analytics
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="Team">
-                          Team
-                        </a>
-                      </li>
+                <a class="nav-link" href="Analytics">
+                  Analytics
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Team">
+                  Team
+                </a>
+              </li>
             </ul>
           </div>
         </nav>
@@ -92,11 +76,15 @@ class Team extends React.Component {
                   <Card.Header>Srinath Makesh</Card.Header>
                   <Card.Img variant="top" src="" />
                   <Card.Body>
-                    <Card.Text>My name is Srinath and I'm a senior at Penn studying 
-                    computer science and statistics. My interests in CS include predictive modeling,
-                     machine learning, and data mining. In my free time, I enjoy playing pickup basketball,
-                      singing, and reading scientific nonfiction. I'll be working in software engineering
-                       in the San Francisco Bay Area this fall!</Card.Text>
+                    <Card.Text>
+                      My name is Srinath and I'm a senior at Penn studying
+                      computer science and statistics. My interests in CS
+                      include predictive modeling, machine learning, and data
+                      mining. In my free time, I enjoy playing pickup
+                      basketball, singing, and reading scientific nonfiction.
+                      I'll be working in software engineering in the San
+                      Francisco Bay Area this fall!
+                    </Card.Text>
                   </Card.Body>
                 </Card>
                 <Card border="primary" style={{ width: "20rem" }}>
