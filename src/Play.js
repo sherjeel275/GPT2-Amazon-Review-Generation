@@ -208,6 +208,9 @@ class Play extends React.Component {
             </b>
           </h1>
           <span>Current round: {this.state.count}</span>
+          <div>
+            <i>NOTE: All reviews were cut off at 700 characters!</i>
+          </div>
           <section class="container">
             <div class="review-box">
               <article>

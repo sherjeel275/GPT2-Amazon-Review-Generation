@@ -1,9 +1,20 @@
-//  index.js
-
+// node.js server for interacting with mongo
+const { createServer } = require("http");
 const express = require("express");
+const compression = require("compression");
+const morgan = require("morgan");
+const path = require("path");
 const bodyParser = require("body-parser");
 
+const normalizePort = port => parseInt(port, 10);
+const PORT = normalizePort(process.env.PORT || 5000);
+
+// set up express app
 const app = express();
+const dev = app.get("env") !== "production";
+app.use(bodyParser.json());
+
+// mongo client
 const MongoClient = require("mongodb").MongoClient;
 const uri =
   "mongodb+srv://reinvald:mepP8NhdN93IY6Vm@cluster0-xf5wa.mongodb.net/test?retryWrites=true&w=majority&wtimeoutMS=0&j=true";
@@ -13,15 +24,19 @@ const client = new MongoClient(uri, {
   autoReconnect: true
 });
 
-app.use(bodyParser.json());
+// check if in prod
+if (!dev) {
+  app.disable("x-powered-by");
+  app.use(compression());
+  app.use(morgan("common"));
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static(path.resolve(__dirname, "build")));
 
-  const path = require("path");
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "build", "index.html"));
   });
+} else {
+  app.use(morgan("dev"));
 }
 
 async function main() {
@@ -46,7 +61,7 @@ async function checkConnection() {
  * route to fetch all reviews in Atlas belonging to one of the four cohorts
  */
 app.post("/getCohort", function(req, res) {
-  console.log("fetching reviews from cohort" + req.body.cohort + "...");
+  console.log("NEW fetching reviews from cohort" + req.body.cohort + "...");
 
   if (!client.isConnected) {
     checkConnection();
@@ -84,7 +99,11 @@ app.post("/getCohort", function(req, res) {
  */
 app.post("/addFeedback", function(req, res) {
   console.log(
-    "updating review " + req.body._id + " in cohort " + req.body.cohort + "..."
+    "NEW updating review " +
+      req.body._id +
+      " in cohort " +
+      req.body.cohort +
+      "..."
   );
 
   if (!client.isConnected) {
@@ -138,26 +157,13 @@ app.post("/addFeedback", function(req, res) {
       })
       .catch(err => console.error(`Failed to update the item: ${err}`));
   }
-
-  /*
-  client
-    .db("reviews")
-    .collection("cohort" + req.body.cohort)
-    .find({})
-    .toArray((error, result) => {
-      if (error) {
-        console.log(error);
-        return res.status(500).send(error);
-      }
-      console.log("query completed");
-      res.send(result);
-    });
-  */
 });
 
 main().catch(console.error);
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`app running on port ${PORT}`);
+const server = createServer(app);
+
+server.listen(PORT, err => {
+  if (err) throw err;
+  console.log("server started!");
 });
