@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Login from "./Login";
-import Signup from "./Signup";
-import Logout from "./Logout";
 import Home from "./Home";
 import About from "./About";
 import Play from "./Play";
@@ -17,35 +14,8 @@ class App extends React.Component {
       <div className="App">
         <Router>
           <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => (
-                //this.state.isLoggedIn === true
-                //? <Home />
-                //: <Redirect to="/login" />
-                <Home />
-              )}
-            />
-            <Route
-              path="/login"
-              render={() => (
-                //  this.state.isLoggedIn === true
-                //   ? <Home />
-                //   : <Login />
-                <Login />
-              )}
-            />
-            <Route path="/signup" render={() => <Signup />} />
-            <Route
-              path="/About"
-              render={() => (
-                //this.state.isLoggedIn === true
-                // ? <About />
-                // : <Login />
-                <About />
-              )}
-            />
+            <Route exact path="/" render={() => <Home />} />
+            <Route path="/About" render={() => <About />} />
             <Route
               path="/Play"
               render={() => (
@@ -73,7 +43,6 @@ class App extends React.Component {
                 <Team />
               )}
             />
-            <Route path="/logout" render={() => <Logout />} />
           </Switch>
         </Router>
       </div>
