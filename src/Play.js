@@ -21,7 +21,7 @@ class Play extends React.Component {
 
   componentDidMount() {
     // fetch the reviews, once it retrieves resolve the promise and update the state
-    this.getCohort("1").then(result =>
+    this.getCohort(this.props.cohort).then(result =>
       this.setState({
         reviews: result
       })
@@ -134,7 +134,7 @@ class Play extends React.Component {
 
   closeRoundPopUp = async () => {
     // fetch user input
-    const cohort = 1;
+    const cohort = this.props.cohort;
     const _id = this.getCurrentID();
     const guess = this.state.guess;
     const confidence_ranking = document.getElementById(
