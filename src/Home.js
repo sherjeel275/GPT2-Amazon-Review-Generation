@@ -17,13 +17,19 @@ class Home extends React.Component {
         this.setState({ cohort: "1", isPlayVisible: true });
         break;
       case "Andrew":
-        // send to cohort ???
+        // send to cohort two
+        document.getElementById("welcomeDiv").style.display = "none";
+        this.setState({ cohort: "2", isPlayVisible: true });
         break;
       case "Sherjeel":
-        // send to cohort ???
+        // send to cohort zero
+        document.getElementById("welcomeDiv").style.display = "none";
+        this.setState({ cohort: "0", isPlayVisible: true });
         break;
       case "Srinath":
-        // send to cohort ???
+        // send to cohort three
+        document.getElementById("welcomeDiv").style.display = "none";
+        this.setState({ cohort: "3", isPlayVisible: true });
         break;
       default:
         alert(
