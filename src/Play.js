@@ -15,15 +15,15 @@ class Play extends React.Component {
       roundPopUp: false,
       count: 1,
       guess: true,
-      reviews: []
+      reviews: [],
     };
   }
 
   componentDidMount() {
     // fetch the reviews, once it retrieves resolve the promise and update the state
-    this.getCohort(this.props.cohort).then(result =>
+    this.getCohort(this.props.cohort).then((result) =>
       this.setState({
-        reviews: result
+        reviews: result,
       })
     );
   }
@@ -61,24 +61,24 @@ class Play extends React.Component {
   };
   */
 
-  getCohort = async cohort => {
+  getCohort = async (cohort) => {
     return fetch("/getCohort", {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        cohort: cohort
-      })
+        cohort: cohort,
+      }),
     })
-      .then(response => {
+      .then((response) => {
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         return data;
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   };
@@ -90,16 +90,16 @@ class Play extends React.Component {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         cohort: cohort,
         _id: _id,
         guess: guess,
         confidence_ranking: confidence_ranking,
-        feedback: feedback
-      })
-    }).catch(error => {
+        feedback: feedback,
+      }),
+    }).catch((error) => {
       console.error(error);
     });
 
@@ -116,19 +116,19 @@ class Play extends React.Component {
 
   openFinalPopUp = () => {
     this.setState({
-      finalPopUp: true
+      finalPopUp: true,
     });
   };
 
   closeFinalPopUp = () => {
     this.setState({
-      finalPopUp: false
+      finalPopUp: false,
     });
   };
 
   openRoundPopUp = () => {
     this.setState({
-      roundPopUp: true
+      roundPopUp: true,
     });
   };
 
@@ -147,7 +147,7 @@ class Play extends React.Component {
     //this.getCohort();
 
     this.setState({
-      roundPopUp: false
+      roundPopUp: false,
     });
 
     // update round
@@ -212,9 +212,6 @@ class Play extends React.Component {
             </b>
           </h1>
           <span>Current round: {this.state.count}</span>
-          <div>
-            <i>NOTE: All reviews were cut off at 700 characters!</i>
-          </div>
           <section class="container">
             <div class="review-box">
               <article>

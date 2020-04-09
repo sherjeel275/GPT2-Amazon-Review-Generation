@@ -4,7 +4,7 @@ import Play from "./Play";
 class Home extends React.Component {
   state = {
     cohort: "",
-    isPlayVisible: false
+    isPlayVisible: false,
   };
 
   checkSubmission = () => {
@@ -15,21 +15,33 @@ class Home extends React.Component {
         // send to cohort one
         document.getElementById("welcomeDiv").style.display = "none";
         this.setState({ cohort: "1", isPlayVisible: true });
+        alert(
+          "Welcome! Please note that each review you see was cut off at 700 characters! So if things look a little funky, that's why."
+        );
         break;
       case "Andrew":
         // send to cohort two
         document.getElementById("welcomeDiv").style.display = "none";
         this.setState({ cohort: "2", isPlayVisible: true });
+        alert(
+          "Welcome! Please note that each review you see was cut off at 700 characters! So if things look a little funky, that's why."
+        );
         break;
       case "Sherjeel":
         // send to cohort zero
         document.getElementById("welcomeDiv").style.display = "none";
         this.setState({ cohort: "0", isPlayVisible: true });
+        alert(
+          "Welcome! Please note that each review you see was cut off at 700 characters! So if things look a little funky, that's why."
+        );
         break;
       case "Srinath":
         // send to cohort three
         document.getElementById("welcomeDiv").style.display = "none";
         this.setState({ cohort: "3", isPlayVisible: true });
+        alert(
+          "Welcome! Please note that each review you see was cut off at 700 characters! So if things look a little funky, that's why."
+        );
         break;
       default:
         alert(
