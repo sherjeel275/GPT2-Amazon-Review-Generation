@@ -6,7 +6,7 @@ const morgan = require("morgan");
 const path = require("path");
 const bodyParser = require("body-parser");
 
-const normalizePort = port => parseInt(port, 10);
+const normalizePort = (port) => parseInt(port, 10);
 const PORT = normalizePort(process.env.PORT || 5000);
 
 // set up express app
@@ -16,12 +16,11 @@ app.use(bodyParser.json());
 
 // mongo client
 const MongoClient = require("mongodb").MongoClient;
-const uri =
-  "mongodb+srv://reinvald:mepP8NhdN93IY6Vm@cluster0-xf5wa.mongodb.net/test?retryWrites=true&w=majority&wtimeoutMS=0&j=true";
+const uri = "INSERT_URI_HERE";
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   reconnectTries: Number.MAX_VALUE,
-  autoReconnect: true
+  autoReconnect: true,
 });
 
 // check if in prod
@@ -60,7 +59,7 @@ async function checkConnection() {
 /*
  * route to fetch all reviews in Atlas belonging to one of the four cohorts
  */
-app.post("/getCohort", function(req, res) {
+app.post("/getCohort", function (req, res) {
   console.log("fetching reviews from cohort" + req.body.cohort + "...");
 
   if (!client.isConnected) {
@@ -97,7 +96,7 @@ app.post("/getCohort", function(req, res) {
 /*
  * route to update review based on user response
  */
-app.post("/addFeedback", function(req, res) {
+app.post("/addFeedback", function (req, res) {
   console.log(
     "updating review " + req.body._id + " in cohort " + req.body.cohort + "..."
   );
@@ -115,19 +114,19 @@ app.post("/addFeedback", function(req, res) {
             feedback: {
               guess: req.body.guess,
               confidence_ranking: req.body.confidence_ranking,
-              feedback: req.body.feedback
-            }
-          }
+              feedback: req.body.feedback,
+            },
+          },
         }
       )
-      .then(result => {
+      .then((result) => {
         const { matchedCount, modifiedCount } = result;
         if (matchedCount && modifiedCount) {
           console.log(`Successfully updated the item.`);
           res.send(result);
         }
       })
-      .catch(err => console.error(`Failed to update the item: ${err}`));
+      .catch((err) => console.error(`Failed to update the item: ${err}`));
   } else {
     client
       .db("reviews")
@@ -139,19 +138,19 @@ app.post("/addFeedback", function(req, res) {
             feedback: {
               guess: req.body.guess,
               confidence_ranking: req.body.confidence_ranking,
-              feedback: req.body.feedback
-            }
-          }
+              feedback: req.body.feedback,
+            },
+          },
         }
       )
-      .then(result => {
+      .then((result) => {
         const { matchedCount, modifiedCount } = result;
         if (matchedCount && modifiedCount) {
           console.log(`Successfully updated the item.`);
           res.send(result);
         }
       })
-      .catch(err => console.error(`Failed to update the item: ${err}`));
+      .catch((err) => console.error(`Failed to update the item: ${err}`));
   }
 });
 
@@ -159,7 +158,7 @@ main().catch(console.error);
 
 const server = createServer(app);
 
-server.listen(PORT, err => {
+server.listen(PORT, (err) => {
   if (err) throw err;
   console.log("server started!");
 });
